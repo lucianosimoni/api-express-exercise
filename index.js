@@ -1,3 +1,22 @@
+// Import the respective packages
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+
+// Start the app
+const app = express();
+const port = 3030;
+
+//Tell express we want to use these libraries
+app.use(morgan("dev"));
+app.use(cors());
+app.use(express.json());
+
+// App listener
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}/`);
+});
+
 const tasks = [
   {
     id: 1,
