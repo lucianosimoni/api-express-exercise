@@ -80,3 +80,9 @@ app.patch("/tasks/:id", (req, res) => {
 
 // // DELETE
 // DELETE A TASK BY ID
+app.delete("/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const taskIndex = tasks.findIndex((item) => item.id === id);
+  const removedTask = tasks.splice(taskIndex, 1)[0];
+  res.json(removedTask);
+});
