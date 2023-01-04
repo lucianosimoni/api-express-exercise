@@ -31,7 +31,18 @@ const tasks = [
 ];
 
 // // CREATE
-// CREATE A TASK
+// CREATE A TASK - EXPECTS A BODY
+app.post("/tasks", (req, res) => {
+  // Check for an unique id
+  let uniqueID = 0;
+  tasks.forEach((task) => (uniqueID = task.id + 1));
+
+  const newTask = { ...req.body };
+  newTask.id = uniqueID;
+  tasks.push(newTask);
+
+  res.json(newTask);
+});
 
 // // READ
 // GET ALL TASKS: GET http://localhost:3030/tasks
