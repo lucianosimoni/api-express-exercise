@@ -62,8 +62,21 @@ app.get("/tasks/:id", (req, res) => {
   res.json(task);
 });
 
-// // UPDATE
-// UPDATE A TASK BY ID
+// // patch
+// patch A TASK BY ID - patch ITS TEXT AND STATUS USING URL QUERY (?blabla="bla")
+app.patch("/tasks/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const text = req.query.text;
+  const status = req.query.status;
+  const task = tasks.find((item) => item.id === id);
+
+  text != null && (task.text = text);
+  status != null && (task.status = status);
+
+  const taskIndex = tasks.findIndex((item) => item.id === id);
+  tasks[taskIndex] = task;
+  res.json(task);
+});
 
 // // DELETE
 // DELETE A TASK BY ID
